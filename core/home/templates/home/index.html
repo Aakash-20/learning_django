@@ -1,18 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Django tutorial</title>
-</head>
-<body>
-    <h1>this is a django demo tutorial</h1>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi quam alias aperiam facilis culpa autem dicta voluptatibus et, aut debitis mollitia temporibus sint dignissimos error aliquam minus dolor. At, eum.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis consequatur, inventore modi tempore dolorum repudiandae. Nesciunt rerum provident delectus a, sint rem, et sed est laborum numquam tempore autem modi!
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis est laboriosam ipsa, enim quia quo cum vero incidunt accusantium commodi rem impedit necessitatibus obcaecati animi magni eos, id hic explicabo!
+{% extends "base.html"%}
+{% block start %}
+
+
+<h1>this is a django demo tutorial</h1>
+    <a href = "/">   Home  </a>
+    <a href = "/contact/">  Contact  </a>
+    <a href = "/about/">   About  </a>
+    <table style="width: 100%", class="container">
+    <tr>
+        <th>S. No.</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Can Vote</th>
+    </tr>
+    {% for people in peoples %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{people.name}}</td>
+        <td>{{people.age}}</td>
+        <td {% if people.age >= 18%} style = "background:green" {%endif%}>
+            {% if people.age >= 18 %}
+            👍
+            {% else %}
+            👎
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+    </table>
+    <p>
+        {{text}} 
     </p>
-    <script>
-        console.log("hey django")
-    </script>
-</body>
-</html>
+   
+{%endblock%}    
