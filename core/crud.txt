@@ -1,0 +1,72 @@
+(InteractiveConsole)
+>>> from home.models import *
+>>> car = Car()
+>>> car = Car(car_name = "Nexon", speed = 120) 
+>>> Car.objects.all()
+<QuerySet []>
+>>> car              
+<Car: Car object (None)>
+>>> car = Car(car_name = "Nexon", speed = 120)
+>>> car.save()
+>>> Car.objects.all()
+<QuerySet [<Car: Car object (1)>]>
+>>> car
+<Car: Car object (1)>
+>>> Car.objects.create(car_name = "Creta", speed = 140)
+<Car: Car object (2)>
+>>> car_dict = {"car_name" : "Inaova", "speed" : 120}
+>>> car_dict
+{'car_name': 'Inaova', 'speed': 120}
+>>> car
+<Car: Car object (1)>
+>>> cars = objects.all()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'objects' is not defined. Did you mean: 'object'?
+>>> cars = Car.objects.all() 
+>>> cars
+<QuerySet [<Car: Car object (1)>, <Car: Car object (2)>]>
+>>> Car.objects.create(**car_dict)  
+<Car: Car object (3)>
+>>> for car in cars:
+... print(f"The car {car.car_name} and has top speed of {car.speed}")
+  File "<console>", line 2
+    print(f"The car {car.car_name} and has top speed of {car.speed}")
+    ^^^^^
+IndentationError: expected an indented block after 'for' statement on line 1
+>>> for car in cars:
+...     print(f"The car {car.car_name} and has top speed of {car.speed}")
+...
+The car Nexon and has top speed of 120
+The car Creta and has top speed of 140
+The car Inaova and has top speed of 120
+>>> car = Car.objects.fiter(id=1)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'Manager' object has no attribute 'fiter'. Did you mean: 'filter'?
+>>> car = Car.objects.filter(id=1) 
+>>> car
+<QuerySet [<Car: Car object (1)>]>
+>>> car.car_name
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'QuerySet' object has no attribute 'car_name'
+>>> Car.objects.filter(id=1)       
+<QuerySet [<Car: Car object (1)>]>
+>>> Car.objects.filter(id=1).update(car_name = "TATA Nexon")
+1
+>>> for car in cars:
+...     print(f"The car {car.car_name} and has top speed of {car.speed}") 
+...
+The car Nexon and has top speed of 120
+The car Creta and has top speed of 140
+The car Inaova and has top speed of 120
+The car Creta and has top speed of 140
+The car Inaova and has top speed of 120
+>>> cars = Car.objects.all()
+>>> cars
+<QuerySet [<Car: Car object (1)>, <Car: Car object (2)>, <Car: Car object (3)>]>
+>>> car = Car.objects.filter(id=1)
+>>>
+>>> car = Car.objects.filter(id=10) 
+>>>
